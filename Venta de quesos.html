@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quesos La Villa - Sitio Oficial</title>
+    
+    <style>
+        /* Configuración base del sitio */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fbf7ee; /* Fondo crema suave */
+            color: #333333;
+            padding-top: 80px;   /* Espacio para evitar que el menú fijo tape el contenido */
+            padding-bottom: 90px; /* Espacio para evitar que el footer fijo tape el contenido */
+            scroll-behavior: smooth; /* Desplazamiento suave entre secciones */
+        }
+
+        /* NAVEGACIÓN: Menú superior siempre visible (Requerimiento 1) */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f3b123; /* Amarillo queso institucional */
+            padding: 15px 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: table; /* Reemplazo de flexbox para máxima compatibilidad de renderizado */
+        }
+
+        header .logo {
+            display: table-cell;
+            vertical-align: middle;
+            font-weight: bold;
+            font-size: 22px;
+            color: #1a365d;
+        }
+
+        header nav {
+            display: table-cell;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        header nav a {
+            text-decoration: none;
+            color: #1a365d;
+            font-weight: bold;
+            margin-left: 20px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header nav a:hover {
+            background-color: #1a365d;
+            color: #ffffff;
+        }
+
+        /* Estructura de las Secciones */
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eadecc;
+        }
+
+        h1 {
+            color: #1a365d;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f3b123;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2c5282;
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: #4a5568;
+        }
+
+        /* PAGINA DE INICIO: Banner de promociones (Requerimiento 2) */
+        .promo-banner {
+            background-color: #fffaf0;
+            border-left: 5px solid #f3b123;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .promo-banner h3 {
+            color: #b7791f;
+            margin-bottom: 5px;
+        }
+
+        /* PAGINA DE PRODUCTOS: Grid del catálogo (Requerimiento 3) */
+        .productos-container {
+            margin-top: 25px;
+            font-size: 0; /* Remueve espacios en blanco entre elementos inline-block */
+            text-align: center;
+        }
+
+        .producto-card {
+            display: inline-block;
+            width: 45%;
+            margin: 2.5%;
+            font-size: 14px;
+            background-color: #fafafa;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: left;
+            vertical-align: top;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .producto-card h3 {
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* PAGINA ACERCA DE: Perfil del estudiante (Requerimiento 4) */
+        .perfil-container {
+            display: table;
+            width: 100%;
+            margin-top: 25px;
+            background-color: #f7fafc;
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e0;
+        }
+
+        .perfil-foto {
+            display: table-cell;
+            width: 180px;
+            vertical-align: top;
+        }
+
+        .perfil-foto img {
+            width: 160px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 3px solid #1a365d;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .perfil-datos {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 25px;
+        }
+
+        .perfil-datos p {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        /* PIE DE PÁGINA: Footer siempre visible con Redes Sociales (Requerimiento 5) */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a365d; /* Azul oscuro elegante */
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 20px;
+            font-size: 13px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+        }
+
+        footer .social-links {
+            margin-top: 8px;
+        }
+
+        footer .social-links a {
+            display: inline-block;
+            margin: 0 12px;
+            text-decoration: none;
+            color: #f3b123;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        footer .social-links a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🧀 Quesos La Villa</div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Productos</a>
+            <a href="#acerca-de">Acerca de</a>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <h1>Bienvenidos a Quesos La Villa</h1>
+        <p>Somos una empresa artesanal comprometida con ofrecer los productos lácteos más frescos y deliciosos de la región, elaborados bajo los más altos estándares de higiene y calidad nutricional.</p>
+        
+        <h2>Nuestra Misión y Visión</h2>
+        <p><strong>Misión:</strong> Producir, distribuir y comercializar lácteos tradicionales de excelente calidad, brindando nutrición a las familias y apoyando el desarrollo sostenible de nuestra comunidad.</p>
+        <p><strong>Visión:</strong> Ser reconocidos en el año 2030 como la marca líder en productos lácteos artesanales de Santa Rosa, distinguiéndonos por la frescura de nuestras materias primas y la calidez en el servicio.</p>
+
+        <div class="promo-banner">
+            <h3>🔥 Promoción de la Semana</h3>
+            <p>Por la compra de 2 libras de Queso Crema, ¡te llevas completamente gratis medio litro de Crema Pura artesanal! Válido hasta agotar existencias.</p>
+        </div>
+    </section>
+
+    <section id="productos">
+        <h1>Catálogo Detallado de Productos</h1>
+        <p>Explore nuestra variedad de lácteos 100% naturales confeccionados con pasión artesanal:</p>
+        
+        <div class="productos-container">
+            <div class="producto-card">
+                <h3>🧀 Queso</h3>
+                <p>Queso fresco de mesa elaborado con leche entera. Posee la textura perfecta y el punto exacto de sal para complementar sus comidas diarias.</p>
+            </div>
+            
+            <div class="producto-card">
+                <h3>🥛 Crema</h3>
+                <p>Crema de origen natural, caracterizada por su espesura ideal y sabor tradicional. Es el acompañamiento perfecto para sus platillos típicos.</p>
+            </div>
+            
+            <div class="producto-card">
+                <h3>🥣 Requesón</h3>
+                <p>Producto liviano, fresco y altamente nutritivo. Destaca por su alto contenido de proteína y suavidad, idóneo para dietas balanceadas.</p>
+            </div>
+            
+            <div class="producto-card">
+                <h3>🍞 Queso Crema</h3>
+                <p>Textura suave, sedosa y perfectamente untable. Su balance de acidez y cremosidad lo vuelve el favorito para desayunos y repostería.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="acerca-de">
+        <h1>Información de la Creadora</h1>
+        <p>Este sitio web ha sido estructurado en cumplimiento con las directrices prácticas especificadas para el desarrollo del proyecto final de ciclo.</p>
+        
+        <div class="perfil-container">
+            <div class="perfil-foto">
+                <img src="https://i.postimg.cc/nh0NCJmc/mi-foto.jpg" alt="María Esperanza Rodríguez Jerónimo">
+            </div>
+            <div class="perfil-datos">
+                <p><strong>Nombre completo:</strong> María Esperanza Rodríguez Jerónimo</p>
+                <p><strong>Número de Carné:</strong> 3190-26-18833</p>
+                <p><strong>Correo electrónico:</strong> <a href="mailto:mrodriguezj2@miumg.edu.gt" style="color: #1a365d; font-weight: bold;">mrodriguezj2@miumg.edu.gt</a></p>
+                <p style="color: #718096; font-size: 14px; margin-top: 10px;"><em>Estudiante de la Universidad Mariano Gálvez de Guatemala</em></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p><strong>Dirección Comercial:</strong> Lote f5-18 La Villa, Santa Rosa de Lima | © 2026 Introducción a los Sistemas de Cómputo</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com" target="_blank">🔗 Facebook Oficial</a>
+            <a href="https://www.instagram.com" target="_blank">🔗 Instagram Oficial</a>
+            <a href="https://www.twitter.com" target="_blank">🔗 Twitter / X</a>
+        </div>
+    </footer>
+
+</body>
+</html>
